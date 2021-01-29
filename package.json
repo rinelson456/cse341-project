@@ -1,0 +1,27 @@
+{
+    "name": "cse341Project",
+    "version": "1.0.0",
+    "description": "cse341Project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon index.js",
+        "start-server": "node index.js"
+    },
+    "author": "Riley Nelson",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^1.18.3"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "ejs": "^2.6.1",
+        "express": "^4.16.3",
+        "express-handlebars": "^3.0.0",
+        "mongodb": "^3.1.6",
+        "mongoose": "^5.2.17",
+        "mysql2": "^1.6.1",
+        "pug": "^2.0.3",
+        "sequelize": "^5.0.0-beta.11"
+    }
+}
