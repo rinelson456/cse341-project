@@ -32,18 +32,6 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoose
-    .connect(
-        MONGODB_URL, options
-    )
-    .then(result => {
-        // This should be your user handling code implement following the course videos
-        app.listen(PORT);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-
 const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 const corsOptions = {
     origin: "https://calm-shore-77478.herokuapp.com/",
@@ -60,3 +48,15 @@ const options = {
 };
 
 const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://<username>:<username>@cse341cluster-3dwlw.mongodb.net/test?retryWrites=true&w=majority";
+
+mongoose
+    .connect(
+        MONGODB_URL, options
+    )
+    .then(result => {
+        // This should be your user handling code implement following the course videos
+        app.listen(PORT);
+    })
+    .catch(err => {
+        console.log(err);
+    });
