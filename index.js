@@ -34,7 +34,7 @@ app.use(errorController.get404);
 
 const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 const corsOptions = {
-    origin: "https://<your_app_name>.herokuapp.com/",
+    origin: "https://calm-shore-77478.herokuapp.com/",
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
@@ -51,7 +51,7 @@ const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://Admin:Rn2084562369
 
 mongoose
     .connect(
-        MONGODB_URL, options
+        'mongodb+srv://Admin:Rn2084562369@cluster0.ct0vm.mongodb.net/Cluster0?retryWrites=true&w=majority'
     )
     .then(result => {
         // This should be your user handling code implement following the course videos
