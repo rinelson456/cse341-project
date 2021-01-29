@@ -46,7 +46,7 @@ mongoose
 
 const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 const corsOptions = {
-    origin: "https://<your_app_name>.herokuapp.com/",
+    origin: "https://calm-shore-77478.herokuapp.com/",
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
