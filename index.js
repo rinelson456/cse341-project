@@ -1,4 +1,5 @@
 const path = require('path');
+const PORT = process.env.PORT || 5000
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -47,11 +48,11 @@ const options = {
     family: 4
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://Admin:Rn2084562369@cse341cluster-3dwlw.mongodb.net/test?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://Admin:password2088199@cluster0.ct0vm.mongodb.net/Cluster0?retryWrites=true&w=majority";
 
 mongoose
     .connect(
-        'mongodb+srv://Admin:Rn2084562369@cluster0.ct0vm.mongodb.net/Cluster0?retryWrites=true&w=majority'
+        MONGODB_URL, options
     )
     .then(result => {
         // This should be your user handling code implement following the course videos
