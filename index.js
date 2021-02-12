@@ -9,6 +9,7 @@ const session = require('express-session');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
+const flash = require('connect-flash');
 
 const app = express();
 
@@ -23,8 +24,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'my secret', resave: false, saveUninitialized: false }));
 
+app.use(flash());
+
 app.use((req, res, next) => {
-    User.findById('5bab316ce0a7c75f783cb8a8')
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
         .then(user => {
             req.user = user;
             next();

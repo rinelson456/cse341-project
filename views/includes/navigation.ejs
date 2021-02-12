@@ -1,5 +1,9 @@
 <div class="backdrop"></div>
 <header class="main-header">
+    <div class="starwars"><img src="https://cssanimation.rocks/demo/starwars/images/star.svg" alt="Star" class="star">
+
+        <img src="https://cssanimation.rocks/demo/starwars/images/wars.svg" alt="Wars" class="wars">
+    </div>
     <button id="side-menu-toggle">Menu</button>
     <nav class="main-header__nav">
         <ul class="main-header__item-list">
@@ -28,14 +32,14 @@
         </ul>
         <ul class="main-header__item-list">
             <% if (!isAuthenticated) { %>
-                <li class="main-header__item">
+                <li class="main-header__item fa-pull-right">
                     <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
                 </li>
-                <li class="main-header__item">
+                <li class="main-header__item fa-pull-right">
                     <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
                 </li>
                 <% } else { %>
-                    <li class="main-header__item">
+                    <li class="main-header__item fa-pull-right">
                         <form action="/logout" method="post">
                             <button type="submit">Logout</button>
                         </form>

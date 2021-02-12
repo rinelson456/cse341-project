@@ -1,5 +1,15 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const nodemailer = require('nodemailer');
+const sendGridTransport = require('nodemailer-sendgrid-transport');
+const { validationResult } = require('express-validator');
+
+const transporter = nodemailer.createTransport(sendGridTransport({
+    auth: {
+        api_key: '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'
+    }
+}));
+
 
 exports.getLogin = (req, res, next) => {
     res.render('auth/login', {
@@ -10,9 +20,16 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.getSignup = (req, res, next) => {
+    let message = req.flash('error');
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
     res.render('auth/signup', {
         path: '/signup',
         pageTitle: 'Signup',
+        errorMessage: message,
         isAuthenticated: false
     });
 };
@@ -49,6 +66,17 @@ exports.postSignup = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        console.log(errors.array());
+        return res.status(422).render('auth/signup', {
+            path: '/signup',
+            pageTitle: 'Signup',
+            isAuthenticated: false,
+            errorMessage: errors.array()[0].msg
+        });
+    }
 
     User.findOne({ email: email }).then(userDoc => {
         if (userDoc) {
@@ -65,6 +93,12 @@ exports.postSignup = (req, res, next) => {
             })
             .then(result => {
                 res.redirect('/login');
+                return transporter.sendMail({
+                    to: email,
+                    from: 'rileyrusnelson@gmail.com',
+                    subject: 'Signup Succeeded!',
+                    html: '<h1> You signed up successfully! </h1>'
+                });
             });
     })
 
